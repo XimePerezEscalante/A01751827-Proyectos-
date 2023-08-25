@@ -13,4 +13,4 @@ Por todo lo antes mencionado es que propongo crear un libro interactivo de cálc
 Fuente: https://programas.cuaed.unam.mx/repositorio/moodle/pluginfile.php/878/mod_resource/content/1/contenido/index.html
 
 Archivo .py:
-Calculo.py
+https://github.com/XimePerezEscalante/A01751827-Proyectos-/blob/5a4e59a0f41c33b7682885296ee8f3f74ac29873/Calculo.py
