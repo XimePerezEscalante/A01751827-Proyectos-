@@ -11,3 +11,6 @@ PROPUESTA
 Por todo lo antes mencionado es que propongo crear un libro interactivo de cálculo diferencial e integral para principiantes que contará con un juego para reforzar y poner en práctica los conocimientos del lector. Incluirá temas como: límites, diferenciación e integración y sus diferentes métodos. En él se podrán generar preguntas y ecuaciones una y otra vez para que el usuario pueda practicar continuamente sin que se repitan los valores de cada pregunta. Además, el juego estará basado en un sistema de puntos para incentivar al usuario a aprender mientras juega.
 
 Fuente: https://programas.cuaed.unam.mx/repositorio/moodle/pluginfile.php/878/mod_resource/content/1/contenido/index.html
+
+Archivo .py:
+Calculo.py
