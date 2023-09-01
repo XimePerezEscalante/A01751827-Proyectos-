@@ -24,21 +24,15 @@ def preguntas_deriv():
 
 	c = randint(0,9)
 
-
 	ecuacion = []
 
 	ecuacion.append((a,coef,c))
-
-
-	respuesta_deriv(a,b,c)
 
 	return ecuacion
 
 #Función para sacar las derivadas de las ecuaciones 
 
 def respuesta_deriv(a,b,c):
-
-	
 
 	if len(str(b)) == 0:
 		b = 0
@@ -60,10 +54,8 @@ def respuesta_deriv(a,b,c):
 
 	if c == 1:
 		resultado = a
-
 	
-
-	return resultado
+	return str(resultado)
 
 
 #Primero se muestra una introducción a cálculo junto con los temas disponibles
@@ -95,10 +87,9 @@ if tema == 1:
 
         respuesta = input("Escribe el resultado:\n")
       
-#Todavía tengo que corregir la comparación de respuestas
-
+#Todavía tengo que corregir la comparación de respuestas cuando el resultado es diferente de 0
+        
         if respuesta == respuesta_deriv(n[0],n[1],n[2]):
-
             print("¡Correcto!     +2pts")
             puntos = 2
         else:
