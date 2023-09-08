@@ -8,25 +8,17 @@ global a,b,c
 
 def preguntas_deriv():
 
-
 	a = randint(1,9)
 
-	coeficiente = [True,False]
-
-	coef = random.choice(coeficiente)
-
-	if coef == True:
-		coef = "x"
-		b = 1
-	else:
-		coef = ""
-		b = 0
+	b = 1
 
 	c = randint(0,9)
 
 	ecuacion = []
 
-	ecuacion.append((a,coef,c))
+	ecuacion.append((a,"x",c))
+
+	respuesta_deriv(a,b,c)
 
 	return ecuacion
 
@@ -34,27 +26,23 @@ def preguntas_deriv():
 
 def respuesta_deriv(a,b,c):
 
-	if len(str(b)) == 0:
-		b = 0
-
 	resultado = ""
 
 	if c == 0:
 		resultado = 0
 
-	if b == 0:
-		resultado = 0
-		
-
-	if c != 1 and c != 0 and b != 0:
+	if c != 1 and c != 0:
 		
 		a1 = a * c
 		c1 = c - 1
-		resultado = (a1,b,"**",c1)
+		res = [str(a1),str(b),"**",str(c1)]
+		for i in res:
+			resultado += i + ""
+		#resultado = (a1,b,"**",c1)
 
 	if c == 1:
 		resultado = a
-	
+
 	return str(resultado)
 
 
@@ -78,7 +66,7 @@ if tema == 1:
     practicar = input("Deseas practicar este tema?\n\nPresiona la tecla S para practicar o la tecla N si deseas seguir leyendo o pasar a otro tema:\n")
     if practicar == "S" or practicar == "s":
 
-        print("¡Empecemos!\nPregunta 1:\n")
+        print("¡Empecemos!\nPregunta 1 :\n")
 
         for n in preguntas_deriv():
 			
@@ -86,15 +74,23 @@ if tema == 1:
 	
 
         respuesta = input("Escribe el resultado:\n")
-      
-#Todavía tengo que corregir la comparación de respuestas cuando el resultado es diferente de 0
-        
-        if respuesta == respuesta_deriv(n[0],n[1],n[2]):
-            print("¡Correcto!     +2pts")
-            puntos = 2
-        else:
-        	print("¡Incorrecto!   +0pts")
-        	puntos = 0
+
+        cont = 0
+        cont2 = 1
+        puntos = 0
+
+        while respuesta == respuesta_deriv(n[0],n[1],n[2]) and cont2 < 6:
+        	cont = cont + 1
+        	print("Cont2:",cont2)
+        	puntos = 2 * cont2
+        	cont2 = cont2 + 1
+        	print("¡Correcto!     +2pts\nPregunta",cont2,":")
+        	for n in preguntas_deriv():
+        		print("f(x) = ",n[0],n[1],"**",n[2])
+        	respuesta = input("Escribe el resultado:\n")
+            
+        print("Puntos:",puntos)
+        	
 
     elif practicar == "N" or practicar == "n":
     
