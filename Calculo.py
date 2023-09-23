@@ -23,8 +23,6 @@ def preguntas_deriv():
 
 			a = randint(-9,9)
 
-		
-
 		if a == 1:
 
 			ecuacion.append(("","x",c))
@@ -37,36 +35,7 @@ def preguntas_deriv():
 
 			ecuacion.append((a,"x",c))
 
-		
-		
 		complejidad = complejidad - 1
-
-
-	"""a = randint(-9,9)
-
-	b = ""
-
-	c = randint(-9,9)
-
-	while a == 0:
-
-		a = randint(-9,9)
-
-	ecuacion = []
-
-	if a == 1:
-
-		ecuacion.append(("","x",c))
-
-	elif c == 1:
-
-		ecuacion.append(("","x",""))
-
-	else:
-
-		ecuacion.append((a,"x",c))
-
-	respuesta_deriv(a,b,c)"""
 
 	return ecuacion
 
@@ -114,8 +83,6 @@ def respuesta_deriv(a,b,c,d):
 			else: 
 
 				resultado += i + "" 
-
-		#resultado = (a1,b,"**",c1)
 
 	if c == 1:
 		resultado = a
@@ -175,19 +142,6 @@ if tema == 1:
 
         			n = 1
 
-        		#if len(str(n[2])) == 0:
-
-        			#n = 1
-
-        	lista.extend((str(n[0]),str(n[1]),"**",str(n[2]),signo_random))
-
-        		
-
-        	#lista2 = ""
-        	#for p in lista:
-        		#lista2 += p + ""
-
-        	#print(lista2)
         	respuesta = input("\nEscribe el resultado:\n")
 
         	if respuesta == respuesta_deriv(n[0],n[1],n[2],signo_random):
@@ -198,16 +152,10 @@ if tema == 1:
         	else:
         		print("¡Incorrecto!     +0pts")
         		puntos = puntos + 0
-        		print(puntos)
-
-        		print("RESULTADO:",respuesta_deriv(n[0],n[1],n[2],signo_random))
         	
         	cont = cont - 1
-        	
-        	print("cont =",cont)
             
-        print("Puntos:",puntos)
-        	
+        print("Puntos:",puntos)   	
 
     elif practicar == "N" or practicar == "n":
     
