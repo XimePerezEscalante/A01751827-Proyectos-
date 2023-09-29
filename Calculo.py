@@ -4,6 +4,8 @@ from random import randint
 
 global a,b,c,derivadaTrig,intTrig
 
+#Función para escoger una función trigonométrica
+
 def trigonometricas():
 
 	lista_trig_deriv = ["sen","cos","tan","sec","cot","csc"]
@@ -11,6 +13,8 @@ def trigonometricas():
 	opcion_trig = random.choice(lista_trig_deriv)
 
 	return opcion_trig
+	
+#Función para escoger una función trigonométrica
 
 def trig_int():
 
@@ -19,6 +23,8 @@ def trig_int():
 	opcion_int = random.choice(lista_trig_int)
 
 	return opcion_int
+
+#Función para crear la ecuación a integrar
 
 def preguntas_deriv_int():
 
@@ -46,6 +52,8 @@ def preguntas_deriv_int():
 
 		ecuacion.append((intTrig,a,"x",c))
 
+#Función para crear la ecuación a derivar
+
 def preguntas_deriv_trig():
 
 	ecuacion = []
@@ -69,6 +77,8 @@ def preguntas_deriv_trig():
 	ecuacion.append((derivadaTrig,a,"x",c))
 
 	return ecuacion
+
+#Función que deriva la ecuacion
 
 def respuesta_deriv_trig(d,a,b,c):
 
@@ -113,6 +123,7 @@ def respuesta_deriv_trig(d,a,b,c):
 
 	return str(resultado)
 
+#Función para mostrar distintos mensajes dependiendo el número de respuestas correctas que tuvo el usuario
 
 def calif(puntos):
 
@@ -139,6 +150,8 @@ def calif(puntos):
 	else:
 
 		print("¡No pasa nada, la práctica hace al maestro!")
+
+#Función para crear cada ronda del juego
 
 def juego_trig():
 	cont = 5
@@ -182,8 +195,6 @@ while practicar == "S" or practicar == "s":
 	juego_trig()
 
 	practicar = input("¿Nuevo juego?\n\nS = Sí\n\nN = No\n")
-
-	#practicar = input("¿Estás segur@?\n\nS = Sí\n\nN = No\n")
 
 print("De acuerdo")
 
