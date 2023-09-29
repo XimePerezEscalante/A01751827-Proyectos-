@@ -2,183 +2,194 @@ import random
 
 from random import randint
 
-global a,b,c
+global a,b,c,derivadaTrig,intTrig
 
-#Función para generar las ecuaciones a derivar
+def trigonometricas():
 
-def preguntas_deriv():
+	lista_trig_deriv = ["sen","cos","tan","sec","cot","csc"]
 
-	complejidad = randint(1,3)
+	opcion_trig = random.choice(lista_trig_deriv)
+
+	return opcion_trig
+
+def trig_int():
+
+	lista_trig_int = ["sen","cos","sec**2","sectan","csc**2","csccot"]
+
+	opcion_int = random.choice(lista_trig_int)
+
+	return opcion_int
+
+def preguntas_deriv_int():
 
 	ecuacion = []
 
-	while complejidad > 0:
+	intTrig = trig_int()
+
+	a = randint(-9,9)
+
+	b = ""
+
+	c = randint(-9,9)
+
+	if intTrig == "sectan":
+
+		ecuacion.append(("sec(",a,"x",c,")tan(",a,"x",c,")"))
+
+		ecuacion.append((a,"x",c))
+
+	elif intTrig == "csccot":
+
+		ecuacion.append(("csc(",a,"x",c,")cot(",a,"x",c,")"))
+
+	else:
+
+		ecuacion.append((intTrig,a,"x",c))
+
+def preguntas_deriv_trig():
+
+	ecuacion = []
+
+	derivadaTrig = trigonometricas()
+
+	a = randint(-9,9)
+
+	b = ""
+
+	c = randint(-9,9)
+
+	while a == 0 or a == 1:
+
 		a = randint(-9,9)
 
-		b = ""
+	while c == 1:
 
 		c = randint(-9,9)
 
-		while a == 0:
-
-			a = randint(-9,9)
-
-		if a == 1:
-
-			ecuacion.append(("","x",c))
-
-		elif c == 1:
-
-			ecuacion.append(("","x",""))
-
-		else:
-
-			ecuacion.append((a,"x",c))
-
-		complejidad = complejidad - 1
+	ecuacion.append((derivadaTrig,a,"x",c))
 
 	return ecuacion
 
-#Función para sacar las derivadas de las ecuaciones 
-
-def respuesta_deriv(a,b,c,d):
+def respuesta_deriv_trig(d,a,b,c):
 
 	resultado = ""
 
+	res = []
+
+	deriv_trig = {"sen":"cos","cos":"sen","tan":"sec**2","cot":"csc**2","sec":"sec(x)tan(x)","csc":"csc(x)cot(x)"}
+
 	if c == 0:
+
 		resultado = 0
-    	#print(resultado)
-    
-	if a == 1:
-		if c == 1:
-			resultado = 1
-		if c != 1:
-			a1 = 1 * c
-			c1 = c - 1
-			res = [str(a1),str(b),"**",str(c1)]
-			for i in res:
-				resultado += i + ""
 
 	if c != 1 and c != 0:
 		
 		a1 = a * c
 		c1 = c - 1
 
-		if signo_random == "-":
+		if d == "cos" or d == "cot":
 
 			a1 = a1 * -1
 
-		res = [str(a1),str(b),"**",str(c1)]
+			res = [str(a1),str(b),"**",str(c1),deriv_trig[d],"(",str(a),str(b),"**",str(c),")"]
 
-		cont4 = 1
+		elif d == "csc":
+
+			a1 = a1 * -1
+
+			res = [str(a1),str(b),"**",str(c1),"csc(",str(a),str(b),"**",str(c),")cot(",str(a),str(b),"**",str(c),")"]
+
+		elif d == "sec":
+
+			res = [str(a1),str(b),"**",str(c1),"sec(",str(a),str(b),"**",str(c),")tan(",str(a),str(b),"**",str(c),")"]
+
+		else:
+
+			res = [str(a1),str(b),"**",str(c1),deriv_trig[d],"(",str(a),str(b),"**",str(c),")"]
 
 		for i in res:
 
-			if cont4 > 1:
-
-				if a1 > 0:
-
-					resultado += "+" + i + "" 
-
-			else: 
-
-				resultado += i + "" 
-
-	if c == 1:
-		resultado = a
+			resultado += i + "" 
 
 	return str(resultado)
 
 
-#Primero se muestra una introducción a cálculo junto con los temas disponibles
+def calif(puntos):
 
-print("Cálculo Diferencial e Integral: Juega y aprende \n\nIntroducción \n\nCálculo es \
-la matemática del cambio, de rectas tangentes, pendientes, áreas, volúmenes, \
-longitudes de arcos, centroides, curvaturas, etc.\nA continuación se presentan \
-los temas que se abordarán en este libro:\n1. Derivación\n2. Integración")
+	if puntos == 10: 
 
-"""Después de que el usuario escoge el tema se le mostrará la explicación y
-después se le preguntará si desea practicar"""
+		print("¡Excelente!")
 
-tema = int(input("Escoge el tema que te gustaría aprender (Escribe 1 o 2):\n"))
+	elif puntos == 8:
 
-while tema!=1 and tema!=2:
-    tema = int(input("Escoge el tema que te gustaría aprender (Escribe 1 o 2):\n"))
+		print("¡Increíble!")
 
-if tema == 1:
-    print("Derivación\n\nLa derivación se define como...\n")
-    practicar = input("Deseas practicar este tema?\n\nPresiona la tecla S para practicar o la tecla N si deseas seguir leyendo o pasar a otro tema:\n")
-    if practicar == "S" or practicar == "s":
+	elif puntos == 6:
 
-        
-        cont = 5
-        cont2 = 0
-        cont3 = 1
-        puntos = 0
-        lista = []
-        signo = ["+","-"]
-        signo_random = random.choice(signo)
+		print("¡Muy bien!")
 
-        
-        while cont > 0:
+	elif puntos == 4:
 
-        	cont2 = cont2 + 1
+		print("¡Tú puedes!")
 
-        	print("Pregunta",cont2,":\nf(x) = ",end = "")
+	elif puntos == 2:
 
-        	for n in preguntas_deriv():
+		print("¡No te rindas!")
 
-        		if cont3 == 1:
+	else:
 
-        			print(n[0],n[1],"**",n[2],end = "")
+		print("¡No pasa nada, la práctica hace al maestro!")
 
-        			cont3 = cont3 - 1
+def juego_trig():
+	cont = 5
+	cont2 = 0
+	puntos = 0
 
-        		else:
+	while cont > 0:
 
-        			print(signo_random,"(",n[0],n[1],"**",n[2],")",end = "")
+		cont2 = cont2 + 1
 
-        		if n == "":
+		print("--------------------------------\nPregunta",cont2,":\nf(x) = ",end = "")
 
-        			n = 1
+		for n in preguntas_deriv_trig():
 
-        	respuesta = input("\nEscribe el resultado:\n")
+			print(n[0],"(",n[1],n[2],"**",n[3],")")
 
-        	if respuesta == respuesta_deriv(n[0],n[1],n[2],signo_random):
-        		print("¡Correcto!     +2pts")
-        		puntos = puntos + 2
-        		print(puntos)
 
-        	else:
-        		print("¡Incorrecto!     +0pts")
-        		puntos = puntos + 0
-        	
-        	cont = cont - 1
-            
-        print("Puntos:",puntos)   	
+		respuesta = input("\nf'(x) = ")
 
-    elif practicar == "N" or practicar == "n":
+		if respuesta == respuesta_deriv_trig(n[0],n[1],n[2],n[3]):
+			print("\n¡Correcto!     +2pts")
+			puntos = puntos + 2
+
+		else:
+			print("\n¡Incorrecto!     +0pts")
+			puntos = puntos + 0
+			print("RESULTADO:",respuesta_deriv_trig(n[0],n[1],n[2],n[3]))
+		
+		cont = cont - 1
+	
     
-        print("¡De acuerdo! Toma el tiempo que necesites hasta que te sientas list@ para practicar.")
+	print("Puntos:",puntos)
 
-elif tema == 2:
-    print("Integración\n\nLa integración se define como...\n")
-    practicar = input("Deseas practicar este tema?\n\nPresiona la tecla S para practicar o la tecla N si deseas seguir leyendo o pasar a otro tema:\n")
-    if practicar == "S" or practicar == "s":
-            respuesta = int(input("Cada ronda tendrá 5 preguntas y cada una valdrá 2 puntos. Este es un ejemplo, escribe 1 para seguir.\n"))
-            
-            if respuesta == 1:
-                puntos = 2
-                print("¡Correcto!   +2pts")
-            else:
-                print("¡Incorrecto!   +0pts")
-                puntos = 0
-            
-                
-            """Al final el usuario puede ver cuántos puntos tiene en total"""
-            
-            print("Puntos = ",puntos)
-            
-    elif practicar == "N" or practicar == "n":
-    
-        print("¡De acuerdo! Toma el tiempo que necesites hasta que te sientas list@ para practicar.")
+	calif(puntos)
+
+
+practicar = input("¿Deseas practicar este tema?\n\nPresiona la tecla S para practicar o la tecla N si deseas seguir leyendo o pasar a otro tema:\n")
+
+while practicar == "S" or practicar == "s":
+
+	juego_trig()
+
+	practicar = input("¿Nuevo juego?\n\nS = Sí\n\nN = No\n")
+
+	#practicar = input("¿Estás segur@?\n\nS = Sí\n\nN = No\n")
+
+print("De acuerdo")
+
+
+
+
+
+
+
