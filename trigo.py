@@ -99,8 +99,7 @@ def respuesta_deriv_trig(d,a,b,c):
 	resultado = ""
 
 	res = []
-
-	#deriv_trig = {"sen":"cos","cos":"sen","tan":"sec**2","cot":"csc**2","sec":"sec(x)tan(x)","csc":"csc(x)cot(x)"}
+	
 	deriv_trig = {"sen":"cos","cos":"sen","tan":"sec^2","cot":"csc^2","sec":"sec(x)tan(x)","csc":"csc(x)cot(x)"}
 
 	if c == 0:
@@ -120,8 +119,6 @@ def respuesta_deriv_trig(d,a,b,c):
 
 				res = [str(a1),str(b),deriv_trig[d],"(",str(a),str(b),"^",str(c),")"]
 
-			#res = [str(a1),str(b),"**",str(c1),deriv_trig[d],"(",str(a),str(b),"**",str(c),")"]
-
 			else:
 
 				res = [str(a1),str(b),"^",str(c1),deriv_trig[d],"(",str(a),str(b),"^",str(c),")"]
@@ -134,8 +131,6 @@ def respuesta_deriv_trig(d,a,b,c):
 
 				res = [str(a1),str(b),"csc(",str(a),str(b),"^",str(c),")cot(",str(a),str(b),"^",str(c),")"]
 
-			#res = [str(a1),str(b),"**",str(c1),"csc(",str(a),str(b),"**",str(c),")cot(",str(a),str(b),"**",str(c),")"]
-
 			else:
 
 				res = [str(a1),str(b),"^",str(c1),"csc(",str(a),str(b),"^",str(c),")cot(",str(a),str(b),"^",str(c),")"]
@@ -145,8 +140,6 @@ def respuesta_deriv_trig(d,a,b,c):
 			if c1 == 1:
 
 				res = [str(a1),str(b),"sec(",str(a),str(b),"^",str(c),")tan(",str(a),str(b),"^",str(c),")"]
-
-			#res = [str(a1),str(b),"**",str(c1),"sec(",str(a),str(b),"**",str(c),")tan(",str(a),str(b),"**",str(c),")"]
 			
 			else:
 
@@ -157,8 +150,6 @@ def respuesta_deriv_trig(d,a,b,c):
 			if c1 == 1:
 
 				res = [str(a1),str(b),deriv_trig[d],"(",str(a),str(b),"^",str(c),")"]
-
-			#res = [str(a1),str(b),"**",str(c1),deriv_trig[d],"(",str(a),str(b),"**",str(c),")"]
 
 			else:
 
@@ -207,7 +198,6 @@ recibe los mismos como parámetro.
 
 def juego_trig():
 
-	#cont = 5
 	cont2 = 0
 	puntos = 0
 
@@ -218,11 +208,7 @@ def juego_trig():
 		print("--------------------------------\nPregunta",cont2,":\nf(x) = ",end = "")
 
 		for n in preguntas_deriv_trig():
-
-			#print(n[0],"(",n[1],n[2],"**",n[3],")")
 			print(n[0],"(",n[1],n[2],"^",n[3],")")
-
-
 
 		respuesta = input("\nf'(x) = ")
 
@@ -234,14 +220,10 @@ def juego_trig():
 			print("\n¡Incorrecto!     +0pts")
 			puntos = puntos + 0
 			print("RESULTADO:",respuesta_deriv_trig(n[0],n[1],n[2],n[3]))
-		
-		#cont = cont - 1
-	
-    
+	  
 	print("--------------------------------\nPuntos:",puntos,"\n")
 
 	calif(puntos)
-
 
 print("¿Deseas practicar este tema?\n\nS = Sí\n\nN = No\n")
 
@@ -266,10 +248,3 @@ while key == "s" or key == "S":
 			key = "n"
 
 print("¡De acuerdo!\n--------------------------------")
-
-
-
-
-
-
-
