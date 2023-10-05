@@ -77,9 +77,7 @@ def respuesta_deriv(e,lista_signo):
 			cont = cont + 1
 
 			while num < len(e):
-
-				#print("a")
-
+				
 				exp = e[num][1]
 
 				coef = e[num][0]
@@ -87,7 +85,6 @@ def respuesta_deriv(e,lista_signo):
 				if exp == 0:
 
 					if cont3 == 0 and len(e) == 1:
-
 						res.append("0")
 
 				elif exp == 1:
@@ -95,24 +92,19 @@ def respuesta_deriv(e,lista_signo):
 					if len(e) > 1:
 
 						if cont3 == 1:
-
 							signo2 = lista_signo[0]
 
 							if signo2 == "-":
-
 								coef = coef * -1
 
 
 						elif cont3 == 2:
-
 							signo2 = lista_signo[1]
 
 							if signo2 == "-":
-
 								coef = coef * -1
 
 					else:
-
 						res.append(str(coef))
 
 				else:
@@ -124,60 +116,43 @@ def respuesta_deriv(e,lista_signo):
 					if len(e) > 1:
 
 						if cont3 == 1:
-
 							signo2 = lista_signo[0]
 
 							if signo2 == "-":
-
 								coef = coef * -1
 
 
 						elif cont3 == 2:
-
 							signo2 = lista_signo[1]
 
 							if signo2 == "-":
-
 								coef = coef * -1
-
 
 					if cont2 > 0:
 
 						if coef > 0:
 
 							if exp == 1:
-
 								res.append(("+",str(coef),"x"))
 
 							else:
-
-								#res.append(("+",str(coef),"x**",str(exp)))
 								res.append(("+",str(coef),"x^",str(exp)))
 
 						else:
 
 							if exp == 1:
-
 								res.append((str(coef),"x"))
 
 							else:
-
-								#res.append((str(coef),"x**",str(exp)))
 								res.append((str(coef),"x^",str(exp)))
 
 					else:
 
-						#res.append((str(coef),"x**",str(exp)))
-
 						if exp == 1:
-
 							res.append((str(coef),"x"))
 
 						else:
-
-							#res.append((str(coef),"x**",str(exp)))
 							res.append((str(coef),"x^",str(exp)))
-
 
 					cont2 = cont2 + 1		
 
@@ -186,11 +161,8 @@ def respuesta_deriv(e,lista_signo):
 				cont3 = cont3 + 1
 
 	if len(res) > 0:
-
 		for x in res:
-
 				for g in x:
-
 					resultado += g + "" 
 
 	return str(resultado)
@@ -225,12 +197,10 @@ recibe los mismos como parámetro.
 """
 
 def juego_deriv():
-
-	#cont = 5
+	
 	cont2 = 0
 	puntos = 0
 	signo_final = ""
-
 
 	while cont2 < 5:
 
@@ -247,9 +217,7 @@ def juego_deriv():
 		for n in preguntas_deriv():
 
 			if cont3 == 1:
-
-				#print(n[0],n[1],"**",n[2],end = " ")
-
+				
 				print(n[0],n[1],"^",n[2],end = " ")
 
 				lista.append([n[0],n[2]])
@@ -257,23 +225,18 @@ def juego_deriv():
 				cont3 = cont3 + 1
 
 			else:
-
 				signo_final = func_signo()
-
-				#print(" ",signo_final,"(",n[0],n[1],"**",n[2],")",end = "")
 
 				print(" ",signo_final,"(",n[0],n[1],"^",n[2],")",end = "")
 
 				lista.append([n[0],n[2]])
 
 			if n == "":
-
 				n = 1
 
 			lista_signo.append(signo_final) 
 
 			if len(lista_signo) == len(lista):
-
 				lista_signo.pop(0)			
 
 		respuesta = input("\n\nf'(x) = ")
@@ -287,8 +250,6 @@ def juego_deriv():
 			print("\n¡Incorrecto!     +0pts")
 			puntos = puntos + 0
 			print("RESULTADO:",respuesta_deriv(lista,lista_signo),"\n")
-
-		#cont = cont - 1
 
 	print("--------------------------------\nPuntos:",puntos,"\n")
 
@@ -341,5 +302,3 @@ if key == "1":
 elif key == "2":
 
 	print("INTEGRACIÓN\n\nEn proceso...")
-
-
