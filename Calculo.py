@@ -249,7 +249,7 @@ def respuesta_deriv_trig(lista,trig,literal):
 	lista_signo = []
 	res = []
 	original = reescribir(lista,literal)
-	deriv_trig = {"sen":"cos","cos":"sen","tan":"sec^2","cot":"csc^2","sec":"sec(x)tan(x)","csc":"csc(x)cot(x)"}
+	deriv_trig = {"sen":"cos","cos":"sen","tan":"sec^2","cot":"csc^2"}
 	resultado = ""
 
 	if lista[1] == 0:
