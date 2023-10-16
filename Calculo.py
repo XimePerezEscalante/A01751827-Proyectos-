@@ -2,57 +2,193 @@
 import random
 from random import randint
 
-global a,b,c
-
 def func_signo():
 
 	#Devuelve el signo utilizando la biblioteca random, si la ecuación tiene más de un elemento.
 
 	signo = ["+","-"]
+
 	signo_random = random.choice(signo)
+
 	return signo_random
 
+def func_literal():
+
+	#Devuelve la literal que se usará en cada pregunta utilizando la biblioteca random.
+
+	lista_literales = ["a","b","c","d","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","z"]
+
+	literal = random.choice(lista_literales)
+
+	return literal
+
+def reescribir(lista,literal):
+
+	"""
+	Recibe la lista con el coeficiente en la posión 0 y el exponente en la posición 1,
+	junto con la literal de la ecuación.
+	Devuelve la ecuación reescrita.
+	"""
+
+	if lista[0] == 1:
+
+		if lista[1] == 1:
+
+			return literal
+
+		else:
+
+			return literal + "^" + str(lista[1])
+
+	elif lista[0] == -1:
+
+		if lista[1] == 1:
+
+			return "-" + literal
+
+		else:
+
+			return "-" + literal + "^" + str(lista[1])
+
+	else:
+
+		if lista[1] == 1:
+
+			return str(lista[0]) + literal
+
+		else:
+
+			return str(lista[0]) + literal + "^" + str(lista[1])
+
+def suma_coef(suma):
+
+	"""
+	Recibe los coeficientes de los exponentes que se repiten para
+	sumarlos
+	"""
+
+	i = 0
+
+	for coef in suma:
+
+		i = i + coef
+
+	return i
+
+def simplificar(exp,coef,literal):
+
+	"""
+	Recibe la lista de exponentes, la de coeficientes y la literal
+	Devuelve la ecuación simplificada si es que hay exponentes repetidos,
+	y si no los hay devuelve None 
+	"""
+
+	j = 0
+
+	k = 1
+
+	suma = []
+
+	res_simp = []
+
+	ecuacion_simp = []
+
+	cont = 0
+
+	while j < len(exp) - 1:
+
+		if len(suma) != len(exp):
+
+			while k < len(exp):
+
+				if exp[j] == exp[k]:
+
+					if cont == 0:
+
+						suma.append(coef[j])
+
+					suma.append(coef[k])
+
+					cont = cont + 1
+
+					exponente = exp[k]
+
+				k = k + 1
+
+		j = j + 1
+
+		k = k - 1
+
+	cont = 0
+
+	if len(suma) > 0:
+
+		coeFinal = suma_coef(suma)
+
+		ecuacion_simp.append((coeFinal,literal,exponente))
+
+		while cont < len(coef):	
+
+			if exp[cont] != exponente:
+
+				ecuacion_simp.append((coef[cont],literal,exp[cont]))
+
+			cont = cont + 1
+
+		return ecuacion_simp
+
+	else:
+
+		return None
 
 def preguntas_deriv():
 
-	"""
-	Devuelve la ecuación a derivar, de la complejidad dependerá el número de elementos a derivar.
-	a: coeficiente
-	b: literal
-	c: exponente
-	"""
+	#Devuelve la ecuación a derivar, de la complejidad dependerá el número de elementos a derivar.
 
 	complejidad = randint(1,3)
+
+	aux = complejidad
+
 	ecuacion = []
-	lista_exp = []
+
 	lista_coef = []
+
+	lista_exp = []
+
+	literal = func_literal()
 
 	while complejidad > 0:
 
-		a = randint(-9,9)
-		b = ""
-		c = randint(-9,9)
+		coeficiente = randint(-9,9)
 
-		while a == 0:
-			a = randint(-9,9)
+		exponente = randint(-9,9)
 
-		while a == 1:
-			a = randint(-9,9)
+		while coeficiente == 0:
 
-		while c == 1:
-			c = randint(-9,9)
+			coeficiente = randint(-9,9)
 
-		ecuacion.append((a,"x",c))
+		lista_coef.append(coeficiente)
+
+		lista_exp.append(exponente)
+
+		ecuacion.append((coeficiente,literal,exponente))
+
 		complejidad = complejidad - 1
+
+	if aux > 1:
+
+		ec_simp = simplificar(lista_exp,lista_coef,literal)
+
+		if ec_simp != None:
+
+			ecuacion = ec_simp
 
 	return ecuacion
 
-
-
-def respuesta_deriv(e,lista_signo):
+def respuesta_deriv(lista_derivar,lista_signo,literal):
 
 	"""
-	Recibe el coeficiente y el exponente de cada elemento de la ecuación a derivar.
+	Recibe el coeficiente, el exponente de cada elemento y la literal de la ecuación a derivar.
 	Deriva la ecuación, multiplica el coeficiente y el exponente, después le resta
 	1 al exponente, si el signo de la función func_signo es negativo, multiplica el 
 	coeficiente por -1. Si el exponente, el coeficiente o ambos son igual a 1, no los 
@@ -67,98 +203,122 @@ def respuesta_deriv(e,lista_signo):
 	cont3 = 0
 	resultado = ""
 
-	while cont <= len(e):
+	while cont <= len(lista_derivar):
 
-		for i in e:
+		for i in lista_derivar:
 
 			cont = cont + 1
 
-			while num < len(e):
+			while num < len(lista_derivar):
 
-				exp = e[num][1]
-				coef = e[num][0]
+				exp = lista_derivar[num][1]
+
+				coef = lista_derivar[num][0]
 
 				if exp == 0:
 
-					if cont3 == 0 and len(e) == 1:
+					if cont3 == 0 and len(lista_derivar) == 1:
+
 						res.append("0")
 
 				elif exp == 1:
 
-					if len(e) > 1:
+					if len(lista_derivar) > 1:
 
 						if cont3 == 1:
+
 							signo2 = lista_signo[0]
 
 							if signo2 == "-":
+
 								coef = coef * -1
+
+							if coef > 0:
+
+								res.append(("+",str(coef)))
+
+							else:
+
+								res.append(str(coef))
 
 
 						elif cont3 == 2:
+
 							signo2 = lista_signo[1]
 
 							if signo2 == "-":
+
 								coef = coef * -1
 
+							if coef > 0:
+
+								res.append(("+",str(coef)))
+
+							else:
+
+								res.append(str(coef))
+
+						else:
+
+							res.append(str(coef))
+
 					else:
+
 						res.append(str(coef))
 
 				else:
 
-					exp = e[num][1] - 1
-					coef = e[num][0] * e[num][1]
+					exp = lista_derivar[num][1] - 1
 
-					if len(e) > 1:
+					coef = lista_derivar[num][0] * lista_derivar[num][1]
+
+					if len(lista_derivar) > 1:
 
 						if cont3 == 1:
+
 							signo2 = lista_signo[0]
 
 							if signo2 == "-":
+
 								coef = coef * -1
 
 
 						elif cont3 == 2:
+
 							signo2 = lista_signo[1]
 
 							if signo2 == "-":
+
 								coef = coef * -1
 
+					derivada = reescribir([coef,exp],literal)
 
 					if cont2 > 0:
 
 						if coef > 0:
 
-							if exp == 1:
-								res.append(("+",str(coef),"x"))
-
-							else:
-								res.append(("+",str(coef),"x^",str(exp)))
+							res.append(("+",derivada))
 
 						else:
 
-							if exp == 1:
-								res.append((str(coef),"x"))
-
-							else:
-								res.append((str(coef),"x^",str(exp)))
+							res.append((derivada))
 
 					else:
 
-						if exp == 1:
-							res.append((str(coef),"x"))
-
-						else:
-							res.append((str(coef),"x^",str(exp)))
+						res.append((derivada))
 
 					cont2 = cont2 + 1		
 
 				num = num + 1
+
 				cont3 = cont3 + 1
 
 	if len(res) > 0:
 
 		for x in res:
+
 				for g in x:
+
 					resultado += g + "" 
 
 	return str(resultado)
@@ -168,92 +328,106 @@ def trigonometricas():
 	#Escoge una función trigonométrica a derivar.
 
 	lista_trig_deriv = ["sen","cos","tan","sec","cot","csc"]
+
 	opcion_trig = random.choice(lista_trig_deriv)
+
 	return opcion_trig
 
 def preguntas_deriv_trig():
 
-	"""Regresa la ecuación a derivar.
-	a: coeficiente
-	b: literal
-	c: exponente
-	"""
+	#Regresa la ecuación trigonométrica a derivar.
 
 	ecuacion = []
+
 	derivadaTrig = trigonometricas()
-	a = randint(-9,9)
-	b = ""
-	c = randint(-9,9)
 
-	while a == 0 or a == 1:
-		a = randint(-9,9)
+	coeficiente = randint(-9,9)
 
-	while c == 1:
-		c = randint(-9,9)
+	literal = func_literal()
 
-	ecuacion.append((derivadaTrig,a,"x",c))
+	exponente = randint(-9,9)
+
+	while coeficiente == 0 or coeficiente == 1:
+
+		coeficiente = randint(-9,9)
+
+	while exponente == 1:
+
+		exponente = randint(-9,9)
+
+	ecuacion.append((derivadaTrig,coeficiente,literal,exponente))
+
 	return ecuacion
 
-def respuesta_deriv_trig(d,a,b,c):
+def respuesta_deriv_trig(lista,trig,literal):
 
 	"""
-	Función que resuelve la derivada, en el diccionario viene la derivada de cada función; multiplica el exponente 
-	con el coeficiente y a este último le resta 1. Si la función que recibe es coseno, cotangente o cosecante, al 
-	coeficiente se le multiplica por -1.
+	Recibe la lista con el coeficiente y el exponente, la identidad trigonométrica y la literal
+	Devuelve el resultado completo de la derivada
 	"""
 
-	resultado = ""
+	lista_signo = []
+
 	res = []
+
+	original = reescribir(lista,literal)
+
 	deriv_trig = {"sen":"cos","cos":"sen","tan":"sec^2","cot":"csc^2","sec":"sec(x)tan(x)","csc":"csc(x)cot(x)"}
 
-	if c == 0:
-		resultado = 0
+	resultado = ""
 
-	if c != 1 and c != 0:
-		a1 = a * c
-		c1 = c - 1
+	if lista[1] == 0:
 
-		if d == "cos" or d == "cot":
-			a1 = a1 * -1
+		resultado = "0"
 
-			if c1 == 1:
-				res = [str(a1),str(b),deriv_trig[d],"(",str(a),str(b),"^",str(c),")"]
+	else:
 
-			else:
-				res = [str(a1),str(b),"^",str(c1),deriv_trig[d],"(",str(a),str(b),"^",str(c),")"]
+		if trig == "cos" or trig == "cot":
 
-		elif d == "csc":
-			a1 = a1 * -1
+			lista[0] = lista[0] * -1
 
-			if c1 == 1:
-				res = [str(a1),str(b),"csc(",str(a),str(b),"^",str(c),")cot(",str(a),str(b),"^",str(c),")"]
+			derivar = [(lista[0],lista[1])]
 
-			else:
-				res = [str(a1),str(b),"^",str(c1),"csc(",str(a),str(b),"^",str(c),")cot(",str(a),str(b),"^",str(c),")"]
+			dy_dx = respuesta_deriv(derivar,lista_signo,literal)
 
-		elif d == "sec":
+			res = [dy_dx,deriv_trig[trig],"(",original,")"]
 
-			if c1 == 1:
-				res = [str(a1),str(b),"sec(",str(a),str(b),"^",str(c),")tan(",str(a),str(b),"^",str(c),")"]
-			
-			else:
-				res = [str(a1),str(b),"^",str(c1),"sec(",str(a),str(b),"^",str(c),")tan(",str(a),str(b),"^",str(c),")"]
+
+		elif trig == "csc":
+
+			lista[0] = lista[0] * -1
+
+			derivar = [(lista[0],lista[1])]
+
+			dy_dx = respuesta_deriv(derivar,lista_signo,literal)
+
+			res = [dy_dx,"csc(",original,")cot(",original,")"]
+
+
+		elif trig == "sec":
+
+			derivar = [(lista[0],lista[1])]
+
+			dy_dx = respuesta_deriv(derivar,lista_signo,literal)
+
+			res = [dy_dx,"sec(",original,")tan(",original,")"]
+
 
 		else:
 
-			if c1 == 1:
-				res = [str(a1),str(b),deriv_trig[d],"(",str(a),str(b),"^",str(c),")"]
+			derivar = [(lista[0],lista[1])]
 
-			else:
-				res = [str(a1),str(b),"^",str(c1),deriv_trig[d],"(",str(a),str(b),"^",str(c),")"]
+			dy_dx = respuesta_deriv(derivar,lista_signo,literal)
+
+			res = [dy_dx,deriv_trig[trig],"(",original,")"]
 
 		for i in res:
 
 			resultado += i + "" 
 
-	return str(resultado)
+	return resultado
 
-def calif(puntos):
+def mensaje(puntos):
 
 	#Función para mostrar diferentes mensajes dependiendo el puntaje que haya obtenido el usuario.
 
@@ -275,8 +449,6 @@ def calif(puntos):
 	else:
 		print("¡No pasa nada, la práctica hace al maestro!\n--------------------------------")
 
-
-
 def juego_deriv():
 
 	"""
@@ -285,55 +457,72 @@ def juego_deriv():
 	respuesta de la función, se le suman dos puntos y al final se manda llamar a la función calif que 
 	recibe los mismos como parámetro.
 	"""
-
 	cont2 = 0
 	puntos = 0
 	signo_final = ""
 
+	print("""Escribe la respuesta sin espacios y en el orden en que aparezca en la función.
+Ejemplo:
+
+	F(x) = 9x^3 + 6x - (-6x^4)
+
+	Escribe el resultado de la siguiente manera:
+
+	27x^2+6+24x^3
+
+""")
 
 	while cont2 < 5:
 
 		cont2 = cont2 + 1
+
 		cont3 = 1
+
 		lista_signo = []
-		lista = []
+
+		lista_derivar = []
 
 		print("--------------------------------\nPregunta",cont2,":\n\nf(x) = ",end = "")
 
 		for n in preguntas_deriv():
 
+			literal = n[1]
+
 			if cont3 == 1:
-				print(n[0],n[1],"^",n[2],end = " ")
-				lista.append([n[0],n[2]])
+
+				print(reescribir([n[0],n[2]],n[1]),end = " ")
+
+				lista_derivar.append([n[0],n[2]])
+
 				cont3 = cont3 + 1
 
 			else:
-				signo_final = func_signo()
-				print(" ",signo_final,"(",n[0],n[1],"^",n[2],")",end = "")
-				lista.append([n[0],n[2]])
 
-			if n == "":
-				n = 1
+				signo_final = func_signo()
+
+				print(signo_final,"(",reescribir([n[0],n[2]],n[1]),")",end = " ")
+
+				lista_derivar.append([n[0],n[2]])
+
 			lista_signo.append(signo_final) 
 
-			if len(lista_signo) == len(lista):
+			if len(lista_signo) == len(lista_derivar):
+
 				lista_signo.pop(0)			
 
 		respuesta = input("\n\nf'(x) = ")
 
-		if respuesta == respuesta_deriv(lista,lista_signo):
+		if respuesta == respuesta_deriv(lista_derivar,lista_signo,literal):
 			print("\n¡Correcto!     +2pts\n")
 			puntos = puntos + 2
-			
 
 		else:
-			print("\n¡Incorrecto!     +0pts")
-			puntos = puntos + 0
-			print("RESULTADO:",respuesta_deriv(lista,lista_signo),"\n")
+			print("\n¡Incorrecto!     +0pts\n")
+			print("RESULTADO:",respuesta_deriv(lista_derivar,lista_signo,literal),"\n")
 
 	print("--------------------------------\nPuntos:",puntos,"\n")
 
-	calif(puntos)
+	mensaje(puntos)
 
 def juego_trig():
 
@@ -346,28 +535,45 @@ def juego_trig():
 
 	cont2 = 0
 	puntos = 0
-
+	
 	while cont2 < 5:
 
 		cont2 = cont2 + 1
+
 		print("--------------------------------\nPregunta",cont2,":\nf(x) = ",end = "")
 
+		lista_derivar = []	
+
 		for n in preguntas_deriv_trig():
-			print(n[0],"(",n[1],n[2],"^",n[3],")")
+
+			literal = n[2]
+
+			print(n[0],"(",reescribir([n[1],n[3]],n[2]),")",end = " ")
+
+			lista_derivar.append(n[1])
+
+			lista_derivar.append(n[3])
 
 		respuesta = input("\nf'(x) = ")
 
-		if respuesta == respuesta_deriv_trig(n[0],n[1],n[2],n[3]):
+		respuesta_correcta = respuesta_deriv_trig(lista_derivar,n[0],literal)
+
+		if respuesta == respuesta_correcta:
+
+
 			print("\n¡Correcto!     +2pts")
 			puntos = puntos + 2
 
 		else:
 			print("\n¡Incorrecto!     +0pts")
 			puntos = puntos + 0
-			print("RESULTADO:",respuesta_deriv_trig(n[0],n[1],n[2],n[3]))
-	 
+			print("RESULTADO:",respuesta_correcta)
+	
+    
 	print("--------------------------------\nPuntos:",puntos,"\n")
-	calif(puntos)
+
+	mensaje(puntos)
+
 
 print("""
 		   Cálculo Diferencial: Juega y aprende
@@ -433,62 +639,125 @@ Como se muestra a continuación:
 
 		""")
 
-practicar = input("\nDeseas practicar este tema?\n\nS = Sí\n\nN = No\n")
+practicar = input("\nDeseas practicar este tema?\n\nS = Sí\n\nN = No\n\n")
 
 if practicar == "n" or practicar == "N":
 
-	print("""¡No hay problema!
+	print("""
+¡No hay problema!
 Aquí hay más ejemplos:
 
 	F(x) = 10x^-2
 
 	f’(x) = -20x^-3
------------------------
+-------------------------------------------------------------------------------
 	F(x) = 9x
 
 	f'(x) = 9
------------------------
+-------------------------------------------------------------------------------
 
 	F(x) = 8x^4 - 5x
 
 	f'(x) = 32x^3 - 5
------------------------
+-------------------------------------------------------------------------------
 """)
 
-practicar = input("\nDeseas practicar o pasar al siguiente tema?\n\nS = Practicar\n\nN = Siguiente tema\n")
+	practicar = input("""
+Deseas practicar o pasar al siguiente tema?
+
+S = Practicar
+
+N = Siguiente tema
+
+""")
 
 while practicar == "S" or practicar == "s":
 
 	juego_deriv()
-	practicar = input("\n¿Nuevo juego?\n\nS = Sí\n\nN = No\n")
+
+	practicar = input("\n¿Nuevo juego?\n\nS = Sí\n\nN = No\n\n")
 
 	if practicar == "n" or practicar == "N":
-		practicar = input("¿Estás segur@?\n\nS = Sí\n\nN = No\n")
+
+		practicar = input("\n¿Estás segur@?\n\nS = Sí\n\nN = No\n\n")
 
 		if practicar == "s" or practicar == "S":
+
 			practicar = "n"
- 
-#Cuando el usuario decide dejar de practicar este tipo de derivadas, se pasa al tema de funciones trigonométricas que están en otro archivo.
 
-print("¡De acuerdo!\n--------------------------------\n\nA continuación aprenderás a derivar funciones trigonométricas")
-print("""
-f’(senx) = cosx
-f’(cosx) = -senx
-f’(tanx) = sec ^ 2 x
-f’(cotx) = -csc ^ 2 x
-f’(secx) = tanx secx
-f’(cscx) = -cotx cscx""")
 
-practicar = input("¿Deseas practicar este tema?\n\nS = Sí\n\nN = No\n")
+print("""¡De acuerdo!
+-------------------------------------------------------------------------------
+
+A continuación aprenderás a derivar funciones trigonométricas:
+
+		f’(sen u) = cos(u) * u'
+
+		f’(cos u) = -sen(u) * u'
+
+		f’(tan u) = sec^2(u) * u'
+
+		f’(cot u) = -csc^2(u) * u'
+
+		f’(sec u) = tan(u)sec(u) * u'
+
+		f’(csc u) = -cot(u)csc(u) * u'
+
+Ahora veamos ejemplos para cada función:
+
+
+	Seno:
+
+		F(x) = sen(4x^-8)
+
+		f’(x) = -32x^-9cos(4x^-8)
+
+	Coseno:
+
+		F(x) = cos(-8x^-8)
+
+		f’(x) = -64x^-9sen(-8x^-8)
+
+	Tangente:
+
+		F(x) = tan(-8x^9)
+
+		f’(x) = -72x^8sec^2(-8x^9)
+
+	Cotangente:
+
+		F(x) = cot(9x^-3)
+
+		f’(x) = 27x^-4csc^2(9x^-3)
+
+	Secante:
+
+		F(x) = sec(-9x^3)
+
+		f’(x) = -27x^2sec(-9x^3)tan(-9x^3)
+
+	Cosecante:
+
+		F(x) = csc(-5x^7)
+
+		f’(x) = 35x^6csc(-5x^7)cot(-5x^7)
+""")
+
+practicar = input("¿Deseas practicar este tema?\n\nS = Sí\n\nN = No\n\n")
 
 while practicar == "S" or practicar == "s":
+
 	juego_trig()
+
 	practicar = input("\n¿Nuevo juego?\n\nS = Sí\n\nN = No\n")
 
 	if practicar == "n" or practicar == "N":
+
 		practicar = input("¿Estás segur@?\n\nS = Sí\n\nN = No\n")
 
 		if practicar == "s" or practicar == "S":
+
 			practicar = "n"
 
-print("¡De acuerdo!\n--------------------------------")
+print("""¡De acuerdo!
+-------------------------------------------------------------------------------""")
