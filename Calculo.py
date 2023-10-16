@@ -64,15 +64,10 @@ def simplificar(exp,coef,literal):
 	"""
 
 	j = 0
-
 	k = 1
-
 	suma = []
-
 	res_simp = []
-
 	ecuacion_simp = []
-
 	cont = 0
 
 	while j < len(exp) - 1:
