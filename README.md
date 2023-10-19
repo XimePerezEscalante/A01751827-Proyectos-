@@ -17,5 +17,5 @@ https://github.com/XimePerezEscalante/A01751827-Proyectos-/blob/5a4e59a0f41c33b7
 
 <h3>Referencias</h3>
 
-Utilicé la biblioteca random para obtener los valores del coeficiente y el exponente aleatoriamente.
+Utilicé la biblioteca random para obtener los valores del coeficiente y el exponente de las funciones aleatoriamente.
 https://docs.python.org/3/library/random.html
