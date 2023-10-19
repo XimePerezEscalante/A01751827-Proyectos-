@@ -558,9 +558,9 @@ Aquí hay más ejemplos:
 	practicar = input("""
 Deseas practicar o pasar al siguiente tema?
 
-		S = Practicar
+			S = Practicar
 
-		N = Siguiente tema
+			N = Siguiente tema
 
 """)
 
@@ -631,10 +631,21 @@ Ahora veamos ejemplos para cada función:
 		f’(x) = 35x^6csc(-5x^7)cot(-5x^7)
 """)
 
-practicar = input("¿Deseas practicar este tema?\n\nS = Sí\n\nN = No\n\n")
+practicar = input("""¿Deseas practicar este tema?
+
+				S = Sí
+
+				N = No
+""")
 
 if practicar == "n" or practicar == "N":
-	practicar = input("\n¿Estás segur@?\n\nS = Sí\n\nN = No\n\n")
+	practicar = input("""
+¿Estás segur@?
+
+				S = Sí
+
+				N = No
+""")
 	if practicar == "s" or practicar == "S":
 		practicar = "n"
 	elif practicar == "N" or practicar == "n":
@@ -644,7 +655,13 @@ while practicar == "S" or practicar == "s":
 	juego_trig()
 	practicar = input("\n¿Nuevo juego?\n\nS = Sí\n\nN = No\n")
 	if practicar == "n" or practicar == "N":
-		practicar = input("¿Estás segur@?\n\nS = Sí\n\nN = No\n")
+		practicar = input("""
+¿Estás segur@?
+
+				S = Sí
+
+				N = No
+""")
 		if practicar == "s" or practicar == "S":
 			practicar = "n"
 		elif practicar == "N" or practicar == "n":
@@ -679,7 +696,13 @@ while opcion == "S" or opcion == "s":
 
 	if tema == 3:
 
-		opcion = input("\n¿Estás segur@?\n\nS = Sí\n\nN = No\n")
+		opcion = input("""
+¿Estás segur@?
+
+				S = Sí
+
+				N = No
+""")
 
 		while opcion != "S" and opcion != "s" and opcion != "N" and opcion != "n":
 
@@ -692,7 +715,13 @@ while opcion == "S" or opcion == "s":
 
 		final(tema)
 
-opcion = input("\n¿Segur@?\n\nS = Sí\n\nN = No\n")
+opcion = input("""
+¿Segur@?
+
+				S = Sí
+
+				N = No
+""")
 
 while opcion != "S" and opcion != "s" and opcion != "N" and opcion != "n":
 
