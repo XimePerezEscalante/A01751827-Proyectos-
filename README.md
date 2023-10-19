@@ -14,3 +14,8 @@ Fuente: https://programas.cuaed.unam.mx/repositorio/moodle/pluginfile.php/878/mo
 
 Archivo .py:
 https://github.com/XimePerezEscalante/A01751827-Proyectos-/blob/5a4e59a0f41c33b7682885296ee8f3f74ac29873/Calculo.py
+
+<h4>Referencias</h4>
+
+Utilicé la biblioteca random para obtener los valores del coeficiente y el exponente aleatoriamente.
+https://docs.python.org/3/library/random.html
