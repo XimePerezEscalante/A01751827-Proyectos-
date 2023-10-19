@@ -15,7 +15,7 @@ from random import randint
 
 def func_signo():
 
-	#Devuelve el signo utilizando la biblioteca random, si la ecuación tiene más de un elemento.
+	#Devuelve: "+" o "-".
 
 	signo = ["+","-"]
 	signo_random = random.choice(signo)
