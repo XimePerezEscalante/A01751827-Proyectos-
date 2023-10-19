@@ -1,5 +1,7 @@
 """
 Proyecto python.
+Autor: Ximena Pérez Escalante
+Fecha: 19 de octubre de 2023
 Cálculo diferencial, juega y aprende.
 El programa muestra una pequeña introducción a cálculo diferencial, junto con 
 ejemplos y explicaciones para derivar. Después el usuario decide si quiere
@@ -12,10 +14,13 @@ muestra la respuesta correcta.
 #Bibliotecas
 import random
 from random import randint
-
+                                                                                 
 def func_signo():
 
-	#Devuelve: "+" o "-".
+	"""
+	Usa random para obtener un signo de la lista signo.
+	Devuelve: signo string.
+	"""
 
 	signo = ["+","-"]
 	signo_random = random.choice(signo)
@@ -24,24 +29,28 @@ def func_signo():
 def reescribir(lista,literal):
 
 	"""
-	Recibe la lista con el coeficiente en la posión 0 y el exponente en la posición 1,
-	junto con la literal de la ecuación.
-	Devuelve la ecuación reescrita.
+	Recibe: lista con el coeficiente en el índice 0 y el exponente
+	en el índice 1, literal string.
+	Si el coeficiente o el exponente valen 1, no los imprime.
+	Devuelve: ecuación string.
 	"""
 
 	if lista[0] == 1:
+
 		if lista[1] == 1:
 			return literal
 		else:
 			return literal + "^" + str(lista[1])
 
 	elif lista[0] == -1:
+
 		if lista[1] == 1:
 			return "-" + literal
 		else:
 			return "-" + literal + "^" + str(lista[1])
 
 	else:
+
 		if lista[1] == 1:
 			return str(lista[0]) + literal
 		else:
@@ -50,8 +59,9 @@ def reescribir(lista,literal):
 def suma_coef(suma):
 
 	"""
-	Recibe los coeficientes de los exponentes que se repiten para
-	sumarlos
+	Recibe: suma lista con coeficientes.
+	Suma los elementos de la lista.
+	Devuelve: resultado de operación numérico.
 	"""
 	i = 0
 	for coef in suma:
@@ -61,11 +71,11 @@ def suma_coef(suma):
 def simplificar(exp,coef,literal):
 
 	"""
-	Recibe: exp lista de exponentes, coef lista de coeficientes y literal 
- 	string.
-  	Revisa si hay exponentes repetidos.
-	Devuelve: ecuación simplificada si es que hay exponentes repetidos,
-	y si no los hay devuelve None. 
+	Recibe: exp lista de exponentes, coef lista de coeficientes y 
+	literal string.
+	Simplifica la ecuación si hay exponentes repetidos.
+	Devuelve: lista ecuación_simp si es que hay exponentes repetidos,
+	si no los hay devuelve None. 
 	"""
 
 	j = 0
@@ -108,7 +118,11 @@ def simplificar(exp,coef,literal):
 
 def preguntas_deriv():
 
-	#Devuelve la ecuación a derivar, de la complejidad dependerá el número de elementos a derivar.
+	"""
+	Genera ecuaciones a derivar usando random para obtener el coeficiente
+	y el exponente de cada término.
+	Devuelve: ecuación lista a derivar.
+	"""
 
 	complejidad = randint(1,3)
 	aux = complejidad
@@ -138,12 +152,12 @@ def preguntas_deriv():
 def respuesta_deriv(lista_derivar,lista_signo,literal):
 
 	"""
- 	Recibe: lista_derivar, lista_signo y literal string.
-	Multiplica el coeficiente y el exponente, después le resta
-	1 al exponente, si el signo de la función func_signo es negativo, multiplica el 
-	coeficiente por -1. Si el exponente, el coeficiente o ambos son igual a 1, no los 
-	muestra.
-	Devuelve: resultado como string de la ecuación.
+	Recibe: lista_derivar con el coeficiente y el exponente de cada término, 
+	lista_signo y literal string.
+	Deriva la ecuación multiplicando el coeficiente y el exponente, después 
+	le resta 1 al exponente, si el signo de la función func_signo es negativo, 
+	multiplica el coeficiente por -1. 
+	Devuelve: derivada de la ecuación string.
 	 """
 
 	cont = 0
@@ -222,7 +236,10 @@ def respuesta_deriv(lista_derivar,lista_signo,literal):
 
 def trigonometricas():
 	
-	#Escoge una función trigonométrica a derivar.
+	"""
+	Utiliza random para obtener una función trigonométrica.
+	Devuelve: función trigonométrica string.
+	"""
 
 	lista_trig_deriv = ["sen","cos","tan","sec","cot","csc"]
 	opcion_trig = random.choice(lista_trig_deriv)
@@ -230,7 +247,12 @@ def trigonometricas():
 
 def preguntas_deriv_trig():
 
-	#Regresa la ecuación trigonométrica a derivar.
+	"""
+	Genera ecuaciones trigonómetricas a derivar usando random para
+	obtener el coeficiente y el exponente de cada término y obteniendo
+	una función trigonométrica con la función trigonometricas.
+	Devuelve: ecuacion a derivar lista
+	"""
 
 	ecuacion = []
 	derivadaTrig = trigonometricas()
@@ -250,9 +272,10 @@ def preguntas_deriv_trig():
 def respuesta_deriv_trig(lista,trig,literal):
 
 	"""
-	Recibe: lista, trig y literal string.
- 	Obtiene el valor de la identidad trigonométrica en el diccionario
-  	y deriva usando la funcion respuesta_deriv.
+	Recibe: lista con el coeficiente, el exponente, la identidad 
+	trigonométrica y literal string.
+	Deriva con la función respuesta_deriv, obtiene el valor de
+	la derivada de la funcion trigonométrica usando el diccionario.
 	Devuelve: resultado de la derivada string.
 	"""
 
@@ -291,11 +314,9 @@ def respuesta_deriv_trig(lista,trig,literal):
 def mensaje(puntos):
 
 	"""
- 	Recibe: puntos valor numérico.
-  	Dependiendo del valor de los puntos, revisa el mensaje.
-  	Devuelve: mensaje.
-  	"""
-
+	Recibe: puntos valor numérico.
+	Dependiendo el valor de los puntos, imprime un mensaje.
+	"""
 	if puntos == 10: 
 		print("¡Excelente!\n--------------------------------")
 	elif puntos == 8:
@@ -307,21 +328,24 @@ def mensaje(puntos):
 	elif puntos == 2:
 		print("¡No te rindas!\n--------------------------------")
 	else:
-		print("¡No pasa nada, la práctica hace al maestro!\n--------------------------------")
+		print("""¡No pasa nada, la práctica hace al maestro!
+--------------------------------""")
 
 def juego_deriv():
 
 	"""
-	Función para generar cada ronda de 5 preguntas, obtiene la ecuación con la
- 	función preguntas_deriv, el signo de func_signo y los manda a respuesta_deriv, si la respuesta 
-  	del usuario es igual a la respuesta de la función, se le suman dos puntos y al final se manda 
-   	llamar a la función calif que recibe los mismos como parámetro.
+	Función para generar cada ronda de 5 preguntas. Manda la ecuación de la
+	función preguntas_deriv y el signo de func_signo a respuesta_deriv, si la 
+	respuesta del usuario es igual a la respuesta de la función, se le suman 
+	dos puntos y al final se manda llamar a la función calif que recibe los 
+	mismos como parámetro.
 	"""
 	cont2 = 0
 	puntos = 0
 	signo_final = ""
 
-	print("""Escribe la respuesta sin espacios y en el orden en que aparezca en la función.
+	print("""Escribe la respuesta sin espacios y en el orden en que aparezca\
+en la función.
 Ejemplo:
 
 	F(x) = 9x^3 + 6x - (-6x^4)
@@ -337,7 +361,8 @@ Ejemplo:
 		cont3 = 1
 		lista_signo = []
 		lista_derivar = []
-		print("--------------------------------\nPregunta",cont2,":\n\nf(x) = ",end = "")
+		print("--------------------------------\nPregunta",cont2,
+		":\n\nf(x) = ",end = "")
 
 		for n in preguntas_deriv():
 			literal = n[1]
@@ -350,7 +375,8 @@ Ejemplo:
 			else:
 
 				signo_final = func_signo()
-				print(signo_final,"(",reescribir([n[0],n[2]],n[1]),")",end = " ")
+				print(signo_final,"(",reescribir([n[0],n[2]],n[1]),")",
+				end = " ")
 				lista_derivar.append([n[0],n[2]])
 				
 			lista_signo.append(signo_final) 
@@ -365,7 +391,8 @@ Ejemplo:
 			puntos = puntos + 2
 		else:
 			print("\n¡Incorrecto!     +0pts\n")
-			print("RESULTADO:",respuesta_deriv(lista_derivar,lista_signo,literal),"\n")
+			print("Respuesta correcta:",
+			respuesta_deriv(lista_derivar,lista_signo,literal),"\n")
 			
 	print("--------------------------------\nPuntos:",puntos,"\n")
 	mensaje(puntos)
@@ -373,19 +400,33 @@ Ejemplo:
 def juego_trig():
 
 	"""
-	Función para generar cada ronda de 5 preguntas, recibe la ecuación de la función 
- 	preguntas_deriv,el signo de func_signo y los manda a respuesta_deriv, si la respuesta 
-  	del usuario es igual a la respuesta de la función, se le suman dos puntos y al final 
-   	se manda llamar a la función calif que recibe los mismos como parámetro.
+	Función para generar cada ronda de 5 preguntas. Manda la ecuación de la
+	función preguntas_deriv y el signo de func_signo a 
+	respuesta_deriv, si la respuesta del usuario es igual a la respuesta de 
+	la función, se le suman dos puntos y al final se manda llamar a la función
+	calif que recibe los mismos como parámetro.
 	"""
 
 	cont2 = 0
 	puntos = 0
+
+	print("""Escribe la respuesta sin espacios y en el orden en que aparezca\
+en la función.
+Ejemplo:
+
+	F(x) = cos (7x^-5)
+
+	Escribe el resultado de la siguiente manera:
+
+	35x^-6sen(7x^-5)
+
+""")
 	
 	while cont2 < 5:
 
 		cont2 = cont2 + 1
-		print("--------------------------------\nPregunta",cont2,":\nf(x) = ",end = "")
+		print("--------------------------------\nPregunta",cont2,":\nf(x) = ",
+		end = "")
 		lista_derivar = []	
 
 		for n in preguntas_deriv_trig():
@@ -405,9 +446,27 @@ def juego_trig():
 		else:
 			print("\n¡Incorrecto!     +0pts")
 			puntos = puntos + 0
-			print("RESULTADO:",respuesta_correcta)
+			print("Respuesta correcta:",respuesta_correcta)
 	print("--------------------------------\nPuntos:",puntos,"\n")
 	mensaje(puntos)
+
+def final(tema):
+
+	"""
+	Recibe: tema valor numerico
+	Si el usuario decide volver a jugar, se mandará a llamar la función del 
+	tema que escoja.
+	"""
+
+	if tema == 1:
+
+		juego_deriv()
+
+	elif tema == 2:
+
+		juego_trig()
+
+
 
 print("""
 		   Cálculo Diferencial: Juega y aprende
@@ -484,24 +543,24 @@ Aquí hay más ejemplos:
 	F(x) = 10x^-2
 
 	f’(x) = -20x^-3
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 	F(x) = 9x
 
 	f'(x) = 9
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
 	F(x) = 8x^4 - 5x
 
 	f'(x) = 32x^3 - 5
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 """)
 
 	practicar = input("""
 Deseas practicar o pasar al siguiente tema?
 
-S = Practicar
+		S = Practicar
 
-N = Siguiente tema
+		N = Siguiente tema
 
 """)
 
@@ -512,9 +571,11 @@ while practicar == "S" or practicar == "s":
 		practicar = input("\n¿Estás segur@?\n\nS = Sí\n\nN = No\n\n")
 		if practicar == "s" or practicar == "S":
 			practicar = "n"
+		elif practicar == "N" or practicar == "n":
+			practicar = "s"
 
 print("""¡De acuerdo!
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
 A continuación aprenderás a derivar funciones trigonométricas:
 
@@ -572,6 +633,13 @@ Ahora veamos ejemplos para cada función:
 
 practicar = input("¿Deseas practicar este tema?\n\nS = Sí\n\nN = No\n\n")
 
+if practicar == "n" or practicar == "N":
+	practicar = input("\n¿Estás segur@?\n\nS = Sí\n\nN = No\n\n")
+	if practicar == "s" or practicar == "S":
+		practicar = "n"
+	elif practicar == "N" or practicar == "n":
+		practicar = "s"
+
 while practicar == "S" or practicar == "s":
 	juego_trig()
 	practicar = input("\n¿Nuevo juego?\n\nS = Sí\n\nN = No\n")
@@ -579,5 +647,61 @@ while practicar == "S" or practicar == "s":
 		practicar = input("¿Estás segur@?\n\nS = Sí\n\nN = No\n")
 		if practicar == "s" or practicar == "S":
 			practicar = "n"
-print("""¡De acuerdo!
--------------------------------------------------------------------------------""")
+		elif practicar == "N" or practicar == "n":
+			practicar = "s"
+
+opcion = input("""Has terminado de ver los temas de este libro. Te gustaría \
+jugar otra vez?
+
+				S = Sí
+
+				N = No
+""")
+
+while opcion != "S" and opcion != "s" and opcion != "N" and opcion != "n":
+
+	opcion = input("Por favor escribe S o N\n")
+
+while opcion == "S" or opcion == "s":
+
+	tema = int(input("""Escoge un tema:
+			
+			1 = Derivadas sencillas
+
+			2 = Derivadas trigonométricas
+
+			3 = Salir
+"""))
+
+	while tema != 1 and tema != 2 and tema != 3:
+
+		tema = int(input("\nPor favor escoge 1, 2 o 3\n"))
+
+	if tema == 3:
+
+		opcion = input("\n¿Estás segur@?\n\nS = Sí\n\nN = No\n")
+
+		while opcion != "S" and opcion != "s" and opcion != "N" and opcion != "n":
+
+			opcion = input("\nPor favor escribe S o N\n")
+
+		if opcion == "S" or opcion == "s":
+
+			opcion = "N"
+	else:
+
+		final(tema)
+
+opcion = input("\n¿Segur@?\n\nS = Sí\n\nN = No\n")
+
+while opcion != "S" and opcion != "s" and opcion != "N" and opcion != "n":
+
+	opcion = input("\nPor favor escribe S o N\n")
+
+	while opcion != "n" and opcion != "N":
+		final(opcion)
+
+print("""Gracias por usar mi programa <3
+
+¡Hasta luego!
+--------------------------------------------------------------------------""")
