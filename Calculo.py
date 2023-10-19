@@ -21,14 +21,6 @@ def func_signo():
 	signo_random = random.choice(signo)
 	return signo_random
 
-def func_literal():
-
-	#Devuelve la literal que se usará en cada pregunta utilizando la biblioteca random.
-
-	lista_literales = ["a","b","c","d","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","z"]
-	literal = random.choice(lista_literales)
-	return literal
-
 def reescribir(lista,literal):
 
 	"""
@@ -121,7 +113,7 @@ def preguntas_deriv():
 	ecuacion = []
 	lista_coef = []
 	lista_exp = []
-	literal = func_literal()
+	literal = "x"
 
 	while complejidad > 0:
 		coeficiente = randint(-9,9)
@@ -241,7 +233,7 @@ def preguntas_deriv_trig():
 	ecuacion = []
 	derivadaTrig = trigonometricas()
 	coeficiente = randint(-9,9)
-	literal = func_literal()
+	literal = "x"
 	exponente = randint(-9,9)
 
 	while coeficiente == 0 or coeficiente == 1:
