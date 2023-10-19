@@ -10,10 +10,10 @@ Una de las asignaturas que una y otra vez se considera como una de las más dif�
 
 Por todo lo antes mencionado es que propongo crear un **libro interactivo de cálculo diferencial** para principiantes que contará con un juego para reforzar y poner en práctica los conocimientos del lector. Incluirá derivadas sencillas y trigonométricas. En él se generarán 5 preguntas por cada ronda para que el usuario pueda practicar continuamente sin que se repitan los valores de cada pregunta. Además, el juego estará basado en un sistema de puntos para incentivar al usuario a aprender mientras juega.
 
-Fuente: https://programas.cuaed.unam.mx/repositorio/moodle/pluginfile.php/878/mod_resource/content/1/contenido/index.html
+**Fuente:** https://programas.cuaed.unam.mx/repositorio/moodle/pluginfile.php/878/mod_resource/content/1/contenido/index.html
 
 
-Archivo .py:
+**Archivo .py:**
 https://github.com/XimePerezEscalante/A01751827-Proyectos-/blob/5a4e59a0f41c33b7682885296ee8f3f74ac29873/Calculo.py
 
 <h3>Referencias</h3>
