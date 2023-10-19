@@ -8,7 +8,7 @@ Una de las asignaturas que una y otra vez se considera como una de las más dif�
 
 <h2>PROPUESTA</h2>
 
-Por todo lo antes mencionado es que propongo crear un **libro interactivo de cálculo diferencial** para principiantes que contará con un juego para reforzar y poner en práctica los conocimientos del lector. Incluirá derivadas sencillas y trigonométricas. En él se podrán generar preguntas y ecuaciones una y otra vez para que el usuario pueda practicar continuamente sin que se repitan los valores de cada pregunta. Además, el juego estará basado en un sistema de puntos para incentivar al usuario a aprender mientras juega.
+Por todo lo antes mencionado es que propongo crear un **libro interactivo de cálculo diferencial** para principiantes que contará con un juego para reforzar y poner en práctica los conocimientos del lector. Incluirá derivadas sencillas y trigonométricas. En él se generarán 5 preguntas por cada ronda para que el usuario pueda practicar continuamente sin que se repitan los valores de cada pregunta. Además, el juego estará basado en un sistema de puntos para incentivar al usuario a aprender mientras juega.
 
 Fuente: https://programas.cuaed.unam.mx/repositorio/moodle/pluginfile.php/878/mod_resource/content/1/contenido/index.html
 
