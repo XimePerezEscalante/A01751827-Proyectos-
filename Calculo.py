@@ -704,4 +704,8 @@ while opcion != "S" and opcion != "s" and opcion != "N" and opcion != "n":
 print("""Gracias por usar mi programa <3
 
 ¡Hasta luego!
---------------------------------------------------------------------------""")
+--------------------------------------------------------------------------
+
+Referencias:
+
+McGraw Hill, Larson, Hostetler, & Edwards. (2019). Cálculo diferencial e integral (7.a ed.) [Físico].""")
