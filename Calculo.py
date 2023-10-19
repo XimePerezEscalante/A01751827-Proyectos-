@@ -1,3 +1,14 @@
+"""
+Proyecto python.
+Cálculo diferencial, juega y aprende.
+El programa muestra una pequeña introducción a cálculo diferencial, junto con 
+ejemplos y explicaciones para derivar. Después el usuario decide si quiere
+practicar mediante un juego que tiene 5 preguntas por ronda, en el que se le 
+muestra una ecuación a derivar, el programa la resuelve, la compara con la 
+respuesta del usuario. Si la tiene bien se le suman 2 puntos y si falla, se
+muestra la respuesta correcta.
+"""
+
 #Bibliotecas
 import random
 from random import randint
@@ -72,10 +83,13 @@ def simplificar(exp,coef,literal):
 
 	while j < len(exp) - 1:
 		if len(suma) != len(exp):
+			
 			while k < len(exp):
 				if exp[j] == exp[k]:
+					
 					if cont == 0:
 						suma.append(coef[j])
+						
 					suma.append(coef[k])
 					cont = cont + 1
 					exponente = exp[k]
@@ -93,6 +107,7 @@ def simplificar(exp,coef,literal):
 			if exp[cont] != exponente:
 				ecuacion_simp.append((coef[cont],literal,exp[cont]))
 			cont = cont + 1
+			
 		return ecuacion_simp
 	else:
 		return None
@@ -124,7 +139,6 @@ def preguntas_deriv():
 		ec_simp = simplificar(lista_exp,lista_coef,literal)
 		if ec_simp != None:
 			ecuacion = ec_simp
-
 	return ecuacion
 
 def respuesta_deriv(lista_derivar,lista_signo,literal):
