@@ -61,9 +61,11 @@ def suma_coef(suma):
 def simplificar(exp,coef,literal):
 
 	"""
-	Recibe la lista de exponentes, la de coeficientes y la literal
-	Devuelve la ecuación simplificada si es que hay exponentes repetidos,
-	y si no los hay devuelve None 
+	Recibe: exp lista de exponentes, coef lista de coeficientes y literal 
+ 	string.
+  	Revisa si hay exponentes repetidos.
+	Devuelve: ecuación simplificada si es que hay exponentes repetidos,
+	y si no los hay devuelve None. 
 	"""
 
 	j = 0
@@ -136,12 +138,12 @@ def preguntas_deriv():
 def respuesta_deriv(lista_derivar,lista_signo,literal):
 
 	"""
-	Recibe el coeficiente, el exponente de cada elemento y la literal de la ecuación a derivar.
-	Deriva la ecuación, multiplica el coeficiente y el exponente, después le resta
+ 	Recibe: lista_derivar, lista_signo y literal string.
+	Multiplica el coeficiente y el exponente, después le resta
 	1 al exponente, si el signo de la función func_signo es negativo, multiplica el 
 	coeficiente por -1. Si el exponente, el coeficiente o ambos son igual a 1, no los 
 	muestra.
-	Devuelve el resultado completo de la ecuación.
+	Devuelve: resultado como string de la ecuación.
 	 """
 
 	cont = 0
@@ -248,8 +250,10 @@ def preguntas_deriv_trig():
 def respuesta_deriv_trig(lista,trig,literal):
 
 	"""
-	Recibe la lista con el coeficiente y el exponente, la identidad trigonométrica y la literal
-	Devuelve el resultado completo de la derivada
+	Recibe: lista, trig y literal string.
+ 	Obtiene el valor de la identidad trigonométrica en el diccionario
+  	y deriva usando la funcion respuesta_deriv.
+	Devuelve: resultado de la derivada string.
 	"""
 
 	lista_signo = []
@@ -286,7 +290,11 @@ def respuesta_deriv_trig(lista,trig,literal):
 
 def mensaje(puntos):
 
-	#Función para mostrar diferentes mensajes dependiendo el puntaje que haya obtenido el usuario.
+	"""
+ 	Recibe: puntos valor numérico.
+  	Dependiendo del valor de los puntos, revisa el mensaje.
+  	Devuelve: mensaje.
+  	"""
 
 	if puntos == 10: 
 		print("¡Excelente!\n--------------------------------")
@@ -304,10 +312,10 @@ def mensaje(puntos):
 def juego_deriv():
 
 	"""
-	Función para generar cada ronda de 5 preguntas, recibe la ecuación de la función preguntas_deriv,
-	el signo de func_signo y los manda a respuesta_deriv, si la respuesta del usuario es igual a la
-	respuesta de la función, se le suman dos puntos y al final se manda llamar a la función calif que 
-	recibe los mismos como parámetro.
+	Función para generar cada ronda de 5 preguntas, obtiene la ecuación con la
+ 	función preguntas_deriv, el signo de func_signo y los manda a respuesta_deriv, si la respuesta 
+  	del usuario es igual a la respuesta de la función, se le suman dos puntos y al final se manda 
+   	llamar a la función calif que recibe los mismos como parámetro.
 	"""
 	cont2 = 0
 	puntos = 0
@@ -365,10 +373,10 @@ Ejemplo:
 def juego_trig():
 
 	"""
-	Función para generar cada ronda de 5 preguntas, recibe la ecuación de la función preguntas_deriv,
-	el signo de func_signo y los manda a respuesta_deriv, si la respuesta del usuario es igual a la
-	respuesta de la función, se le suman dos puntos y al final se manda llamar a la función calif que 
-	recibe los mismos como parámetro.
+	Función para generar cada ronda de 5 preguntas, recibe la ecuación de la función 
+ 	preguntas_deriv,el signo de func_signo y los manda a respuesta_deriv, si la respuesta 
+  	del usuario es igual a la respuesta de la función, se le suman dos puntos y al final 
+   	se manda llamar a la función calif que recibe los mismos como parámetro.
 	"""
 
 	cont2 = 0
