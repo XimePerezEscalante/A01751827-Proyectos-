@@ -12,11 +12,10 @@ Por todo lo antes mencionado es que propongo crear un **libro interactivo de cá
 
 **Fuente:** https://programas.cuaed.unam.mx/repositorio/moodle/pluginfile.php/878/mod_resource/content/1/contenido/index.html
 
-
-**Archivo .py:**
-https://github.com/XimePerezEscalante/A01751827-Proyectos-/blob/5a4e59a0f41c33b7682885296ee8f3f74ac29873/Calculo.py
-
 <h3>Referencias</h3>
 
 Utilicé la biblioteca random para obtener los valores del coeficiente y el exponente de las ecuaciones en un rango de -9 a 9, para obtener funciones trigonométricas: sen, cos, tan, cot, sec y csc; y para obtener el signo aleatoriamente.
 https://docs.python.org/3/library/random.html
+
+**Archivo .py:**
+https://github.com/XimePerezEscalante/A01751827-Proyectos-/blob/5a4e59a0f41c33b7682885296ee8f3f74ac29873/Calculo.py
